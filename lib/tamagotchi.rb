@@ -26,5 +26,10 @@ class Tamagotchi
     levels_to_subtract = time_difference./(300)
     @food_level = @food_level.-(levels_to_subtract)
   end
-
+  define_method(:is_alive) do
+    @food_level.>(0)
+  end
+  define_method(:set_food_level) do |food|
+    @food_level = food
+  end
 end
