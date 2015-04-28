@@ -3,6 +3,9 @@ require('tamagotchi')
 
 
 describe(Tamagotchi) do
+  before() do
+    Tamagotchi.clear()
+  end
   describe("#initialize") do
     it("sets the name and life levels of a new Tamagotchi") do
       my_pet = Tamagotchi.new("lil dragon")
@@ -48,6 +51,18 @@ describe(Tamagotchi) do
       it("sets the sleep level to 15") do
         my_pet = Tamagotchi.new("lil dragon")
         expect(my_pet.put_to_sleep()).to(eq(15))
+      end
+    end
+    describe('.all') do
+      it("lists all the tamagotchis") do
+      expect(Tamagotchi.all_list()).to(eq([]))
+      end
+    end
+    describe('#save') do
+      it("saves it to the list of all tamagotchis") do
+        my_pet = Tamagotchi.new("lil dragon")
+        my_pet.save()
+      expect(Tamagotchi.all_list()).to(eq([my_pet]))
       end
     end
 end

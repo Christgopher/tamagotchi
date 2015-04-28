@@ -1,0 +1,14 @@
+<h1>Here are your Tamagotchis!</h1>
+
+<ul>
+  <% @names.each() do |name| %>
+    <li><%= name.name() %></li>
+  <% end %>
+</ul>
+
+<form action="/new_names" method="post">
+  <label for="name">Enter the name of your Tamagotchi!</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Submit</button>
+</form>

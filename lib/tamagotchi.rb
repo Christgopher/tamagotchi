@@ -1,4 +1,5 @@
 class Tamagotchi
+  @@all_list = []
   define_method(:initialize) do |name|
     @name = name
     @food_level = 10
@@ -43,5 +44,14 @@ class Tamagotchi
   end
   define_method(:put_to_sleep) do
     @sleep_level = 15
+  end
+  define_singleton_method(:all_list) do
+    @@all_list
+  end
+  define_method(:save) do
+    @@all_list.push(self)
+  end
+  define_singleton_method(:clear) do
+    @@all_list = []
   end
 end
