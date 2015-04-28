@@ -10,7 +10,10 @@ end
 
 post('/new_names') do
   name = params.fetch('name')
-  tamagotchi = Tamagotchi.new(name)
-  tamagotchi.save()
+  my_pet = Tamagotchi.new(name)
+  @food_level = my_pet.food_level(name)
+  my_pet.save()
   erb(:success)
 end
+
+post

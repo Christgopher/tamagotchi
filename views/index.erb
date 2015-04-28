@@ -3,7 +3,19 @@
 <ul>
   <% @names.each() do |name| %>
     <li><%= name.name() %></li>
-  <% end %>
+    <!-- <label for="chosen">Choose your Tamagatchi</label>
+    <input id="chosen" name="chosen" type="text">
+
+
+         name.food_level("<<<name>>>")
+         name.sleep_level("<<<name>>>") -->
+
+    <% end %>
+
+<!--
+get("/changes")
+
+@chosen = params.fetch(chosen) -->
 </ul>
 
 <form action="/new_names" method="post">
