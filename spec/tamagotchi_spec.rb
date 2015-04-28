@@ -30,5 +30,11 @@ describe(Tamagotchi) do
       expect(my_pet.is_alive()).to(eq(false))
     end
   end
-
+    describe("#feed") do
+      it("increases food level by one") do
+        my_pet = Tamagotchi.new("lil dragon")
+        my_pet.set_food_level(9)
+        expect(my_pet.feed()).to(eq(10))
+      end
+    end
 end

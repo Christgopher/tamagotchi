@@ -32,4 +32,9 @@ class Tamagotchi
   define_method(:set_food_level) do |food|
     @food_level = food
   end
+  define_method(:feed) do
+    if @food_level.<(10)
+      @food_level.+(1)
+    end
+  end
 end
