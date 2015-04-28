@@ -25,6 +25,7 @@ class Tamagotchi
     time_difference = current_time.-(@initialized_time).to_i()
     levels_to_subtract = time_difference./(300)
     @food_level = @food_level.-(levels_to_subtract)
+    @sleep_level = @sleep_level.-(levels_to_subtract)
   end
   define_method(:is_alive) do
     @food_level.>(0)
