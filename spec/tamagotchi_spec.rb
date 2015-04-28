@@ -37,4 +37,16 @@ describe(Tamagotchi) do
         expect(my_pet.feed()).to(eq(10))
       end
     end
+    describe("#play") do
+      it("increases happiness level by one") do
+        my_pet = Tamagotchi.new("lil dragon")
+        expect(my_pet.play()).to(eq(11))
+      end
+    end
+    describe('#put_to_sleep') do
+      it("sets the sleep level to 15") do
+        my_pet = Tamagotchi.new("lil dragon")
+        expect(my_pet.put_to_sleep()).to(eq(15))
+      end
+    end
 end

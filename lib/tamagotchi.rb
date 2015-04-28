@@ -34,7 +34,13 @@ class Tamagotchi
   end
   define_method(:feed) do
     if @food_level.<(10)
-      @food_level.+(1)
+      @food_level = @food_level.+(1)
     end
+  end
+  define_method(:play) do
+    @happiness_level = @happiness_level.+(1)
+  end
+  define_method(:put_to_sleep) do
+    @sleep_level = 15
   end
 end
