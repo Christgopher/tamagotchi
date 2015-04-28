@@ -1,24 +1,28 @@
 class Tamagotchi
   @@all_list = []
+  @@food_level = {}
+  @@sleep_level = {}
+  @@happiness_level = {}
+  @@time = {}
   define_method(:initialize) do |name|
     @name = name
-    @food_level = 10
-    @happiness_level = 10
-    @sleep_level = 10
-    @initialized_time = Time.new(2015, 4, 28, 0, 0, 0)
+    @@food_level.store(name, 10)
+    @@happiness_level.store(name, 10)
+    @@sleep_level.store(name, 10)
+    @@time.store(name, Time.new(2015, 4, 28, 0, 0, 0))
   #  @initialized_time = Time.now()
   end
   define_method(:name) do
     @name
   end
-  define_method(:food_level) do
-    @food_level
+  define_method(:food_level) do |name|
+    @@food_level.fetch(name)
   end
-  define_method(:happiness_level) do
-    @happiness_level
+  define_method(:happiness_level) do |name|
+    @@happiness_level.fetch(name)
   end
-  define_method(:sleep_level) do
-    @sleep_level
+  define_method(:sleep_level) do |name|
+    @@sleep_level.fetch(name)
   end
   define_method(:time_passes) do
     current_time = Time.new(2015, 4, 28, 0, 5, 0)
@@ -34,8 +38,8 @@ class Tamagotchi
   define_method(:set_food_level) do |food|
     @food_level = food
   end
-  define_method(:feed) do
-    if @food_level.<(10)
+  define_method(:feed) do |name|
+    if @@food_level.fetch(name).<(10)
       @food_level = @food_level.+(1)
     end
   end
