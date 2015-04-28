@@ -24,30 +24,42 @@ class Tamagotchi
   define_method(:sleep_level) do |name|
     @@sleep_level.fetch(name)
   end
-  define_method(:time_passes) do
+  define_method(:time_passes) do |name|
     current_time = Time.new(2015, 4, 28, 0, 5, 0)
     #current_time = Time.now()
-    time_difference = current_time.-(@initialized_time).to_i()
+    time_difference = current_time.-(@@time.fetch(name)).to_i()
     levels_to_subtract = time_difference./(300)
-    @food_level = @food_level.-(levels_to_subtract)
-    @sleep_level = @sleep_level.-(levels_to_subtract)
+    food_level = @@food_level.fetch(name)
+    new_food_level = food_level.-(levels_to_subtract)
+    @@food_level.delete(name)
+    @@food_level.store(name, new_food_level)
+    sleep_level = @@sleep_level.fetch(name)
+    new_sleep_level = sleep_level.-(levels_to_subtract)
+    @@sleep_level.delete(name)
+    @@sleep_level.store(name, new_food_level)
   end
-  define_method(:is_alive) do
-    @food_level.>(0)
+  define_method(:is_alive) do |name|
+    @@food_level.fetch(name).>(0)
   end
-  define_method(:set_food_level) do |food|
-    @food_level = food
+  define_method(:set_food_level) do |food, name|
+    @@food_level.delete(name)
+    @@food_level.store(name, food)
   end
   define_method(:feed) do |name|
     if @@food_level.fetch(name).<(10)
-      @food_level = @food_level.+(1)
+      new_food_level = @@food_level.fetch(name).+(1)
+      @@food_level.delete(name)
+      @@food_level.store(name, new_food_level)
     end
   end
-  define_method(:play) do
-    @happiness_level = @happiness_level.+(1)
+  define_method(:play) do |name|
+    new_happiness_level = @@happiness_level.fetch(name).+(1)
+    @@happiness_level.delete(name)
+    @@happiness_level.store(name, new_happiness_level)
   end
-  define_method(:put_to_sleep) do
-    @sleep_level = 15
+  define_method(:put_to_sleep) do |name|
+    @@sleep_level.delete(name)
+    @@sleep_level.store(name, 15)
   end
   define_singleton_method(:all_list) do
     @@all_list
